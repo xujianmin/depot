@@ -32,6 +32,9 @@
           <li><a href="/news">News</a></li>
           <li><a href="/contact">Contact</a></li>
         </ul>
+        <p class="text-gray-300 text-sm py-2 border-t mt-2">
+          <%= DateTime.current.to_fs(:db) %>
+        </p>
       </nav>
       <main class="container mx-auto mt-4 px-5 flex">
         <%= yield %>
