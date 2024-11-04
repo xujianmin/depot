@@ -35,6 +35,11 @@
         <p class="text-gray-300 text-sm py-2 border-t mt-2">
           <%= DateTime.current.to_fs(:db) %>
         </p>
+        <% if session[:counter].to_i >= 5 %>
+          <p class="text-gray-300 text-sm py-2 border-t mt-2">
+            You have visited <%= pluralize(session[:counter], 'time') %>!
+          </p>
+        <% end %>
       </nav>
       <main class="container mx-auto mt-4 px-5 flex">
         <%= yield %>
