@@ -10,6 +10,7 @@ class CartsController < ApplicationController
 
   # GET /carts/1 or /carts/1.json
   def show
+    redirect_to store_index_url, notice: "Cannot access to other people's cart." unless @cart.id == session[:cart_id]
   end
 
   # GET /carts/new
