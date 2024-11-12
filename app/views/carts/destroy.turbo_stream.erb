@@ -1,0 +1,14 @@
+<%= turbo_stream.replace 'notice' do %>
+  <%= render partial: 'store/notice', locals: { notice: @notice } %>
+<% end %>
+
+
+<%
+=begin%>
+ 这里不能用 remove 如果用了 remove，会把整个 cart 的 partial 都去掉，导致再新加 line_item 的时候，DOM
+ 中没有可用的 <div id="cart"></div> 这个空了容器了。
+<%
+=end%>
+<%= turbo_stream.replace 'cart' do %>
+  <%= render partial: 'layouts/cart', locals: {cart: @cart } %>
+<% end %>
