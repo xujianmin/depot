@@ -74,7 +74,10 @@ class LineItemsController < ApplicationController
 
     respond_to do |format|
       if @line_item.save
-        format.turbo_stream { @cart = @line_item.cart }
+        format.turbo_stream do
+          @cart = @line_item.cart
+          @notice = flash.now[:notice] = "Line item was successfully minused."
+        end
         format.html { redirect_to store_index_url, status: :see_other, notice: "Line item was successfully minused." }
       end
     end
