@@ -20,3 +20,11 @@ ruby:
     delivered fast, you should add Ruby to your toolbox.
   image_url: ruby.jpg
   price: 49.50
+
+docker:
+  title: Your first Docker book
+  description:
+    Docker is a tool for easy management of different env.
+  image_url: ridocker.jpg
+  price: 12.90
+  

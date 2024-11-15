@@ -7,7 +7,7 @@ class CartTest < ActiveSupport::TestCase
   test "add a unique product to cart" do
     cart = carts(:one)
     assert_difference("cart.line_items.size", 1) do
-      cart.add_product(products(:ruby))
+      cart.add_product(products(:docker))
     end
   end
 
