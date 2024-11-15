@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+  include ActiveModel::Serializers::Xml
+
   before_action :set_product, only: %i[ show edit update destroy who_bought ]
 
   # GET /products or /products.json
@@ -52,17 +54,19 @@ class ProductsController < ApplicationController
   def who_bought
     @orders = []
 
-    @product.line_items.each do |item|
+    # TODO:
+    # 这个循环应该有优化的余地
+    @product.orders.each do |order|
       line = {}
-      line[:order] = item.order
-      line[:quantity] = item.quantity
+      line[:order] = order
+      line[:quantity] = order.line_items.find_by(product_id: @product.id).quantity
       @orders << line
     end
 
     respond_to do |format|
       format.html
       format.json { render json: @orders.to_json }
-      # format.xml
+      format.xml { render xml: @orders.to_xml }
     end
   end
 

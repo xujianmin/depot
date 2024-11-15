@@ -42,6 +42,9 @@
               <li>
                 <%= link_to 'Destroy', product, class: 'hover:underline', data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
               </li>
+              <li>
+                <%= link_to 'Who Bought', who_bought_product_path(product), class: 'hover:underline' if product.orders %>
+              </li>
             </ul>
           </td>
         </tr>
