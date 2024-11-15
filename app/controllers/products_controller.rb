@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: %i[ show edit update destroy ]
+  before_action :set_product, only: %i[ show edit update destroy who_bought ]
 
   # GET /products or /products.json
   def index
@@ -46,6 +46,23 @@ class ProductsController < ApplicationController
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def who_bought
+    @orders = []
+
+    @product.line_items.each do |item|
+      line = {}
+      line[:order] = item.order
+      line[:quantity] = item.quantity
+      @orders << line
+    end
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @orders.to_json }
+      # format.xml
     end
   end
 

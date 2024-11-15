@@ -1,0 +1,30 @@
+<div class="w-full">
+  <h2 class="font-bold text-xl mb-6 pb-2 border-b-2">The following clients bought: <%= @product.title %></h2> 
+
+  <table class="table-auto w-full">
+    <thead>
+      <tr class="font-bold mb-6 border-b-2">
+        <td>Name</td>
+        <td>Email</td>
+        <td>Address</td>
+        <td>Pay Type</td>
+        <td>Bought #</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <td><%= order[:order].name %></td>
+          <td><%= order[:order].email %></td>
+          <td><%= order[:order].address %></td>
+          <td><%= order[:order].pay_type %></td>
+          <td><%= order[:quantity] %></td>
+        </tr>
+      <% end %>
+    </tbody>
+    <tfoot>
+      <%= link_to 'See JSON format', who_bought_product_path(@product, format: :json), class: "text-blue-600 hover:text-blue-800" %>
+      <%= link_to 'See XML format', who_bought_product_path(@product, format: :xml), class: "text-blue-600 hover:text-blue-800 ml-2" %>
+    </tfoot>
+  </table>
+</div>
